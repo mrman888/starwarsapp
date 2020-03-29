@@ -6,22 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
-import { SharedModule } from './shared/shared.module';
-import { MaterialModule } from '@shared/material.module';
 
 @NgModule({
 	bootstrap: [AppComponent],
 	declarations: [AppComponent],
-	imports: [
-		BrowserModule,
-		BrowserAnimationsModule,
-		HttpClientModule,
-		AppRoutingModule,
-		CoreModule,
-		SharedModule,
-		MaterialModule,
-		FeaturesModule
-	],
+	imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, CoreModule, FeaturesModule],
 	providers: []
 })
 export class AppModule {}
