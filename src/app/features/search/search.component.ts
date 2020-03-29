@@ -11,7 +11,7 @@ export class SearchComponent implements OnInit, AfterContentInit {
 	films: SearchResultFilm[] = [];
 	counter = 0;
 
-	constructor(private cdRef: ChangeDetectorRef, private _swapi: Angular2SwapiService) {}
+	constructor(private _swapi: Angular2SwapiService) {}
 
 	ngOnInit(): void {
 		this._swapi.getFilms().subscribe((filmsResponse: Film[]) => {
