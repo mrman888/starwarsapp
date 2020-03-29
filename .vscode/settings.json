@@ -1,0 +1,31 @@
+{
+	"editor.codeLens": false,
+	"editor.detectIndentation": false,
+	"editor.formatOnType": true,
+	"editor.insertSpaces": false,
+	"editor.letterSpacing": 1,
+	"files.defaultLanguage": "typescript",
+	"files.exclude": {
+		"**/.DS_Store": true,
+		"**/.git": true,
+		"**/*.js": {
+			"when": "$(basename).ts"
+		},
+		"**/*.js.map": {
+			"when": "$(basename)"
+		},
+		"/dist": true
+	},
+	"files.trimTrailingWhitespace": true,
+	"editor.formatOnSave": true,
+	"html.format.enable": false,
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"prettier.disableLanguages": ["html"],
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"vsicons.projectDetection.autoReload": true,
+	"workbench.colorTheme": "Default Dark+",
+	"workbench.iconTheme": "vscode-icons",
+	"problems.showCurrentInStatus": true
+}
