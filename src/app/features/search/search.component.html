@@ -1,7 +1,10 @@
 <div fxLayout="row wrap"  fxLayoutAlign="center center">
-	<mat-card *ngFor="let film of films$ | async" fxFlex="20">
+	<mat-card *ngFor="let film of films" fxFlex="20">
 		<h1>{{ film.title }}</h1>
 		<h3>{{ film.release_date | date }}</h3>
-		<!-- <p>{{ film.opening_crawl }}</p> -->
+		<div fxLayoutAlign="end center">
+			<mat-icon aria-hidden="false" aria-label="Example home icon" (click)="toggle(film)" *ngIf="!film.isFavorite">favorite_border</mat-icon>
+			<mat-icon aria-hidden="false" aria-label="Example home icon" (click)="toggle(film)"  *ngIf="film.isFavorite">favorite</mat-icon>
+		</div>
 	</mat-card>
 </div>
