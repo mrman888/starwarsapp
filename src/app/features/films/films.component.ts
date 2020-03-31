@@ -50,4 +50,6 @@ export class FilmsComponent implements OnInit {
 			});
 		});
 	}
+
+	trackBy
 }
