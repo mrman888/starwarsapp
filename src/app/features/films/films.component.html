@@ -1,10 +1,11 @@
 
 <div fxLayout="column"  fxLayoutAlign="center center" (mouseover)="onMouseOver()" class="hover-container" (click)="refresh()">
-	<button mat-button>hover & refresh</button>
-	<mat-progress-bar [mode]="'indeterminate'" *ngIf="loading"></mat-progress-bar>
+	<button mat-button color="primary">hover & refresh</button>
+	<ng-template #loading><mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar></ng-template>
+
 </div>
-<div fxLayout="row wrap"  fxLayoutAlign="center center">
-	<mat-card *ngFor="let film of films" fxFlex="20" [ngStyle]="{'background-color': getColor(film.isFavorite)}">
+<div fxLayout="row wrap"  fxLayoutAlign="center center" *ngIf="films$ | async as films; else loading">
+	<mat-card *ngFor="let film of films" fxFlex="20" [ngStyle]="{'background-color': film.isFavorite | color}">
 		<h1>{{ film.title }} </h1>
 		<h3>{{ film.release_date | date }}</h3>
 		<div fxLayoutAlign="end center">

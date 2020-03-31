@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectorRef, AfterContentInit } from '@angular/core';
 import { Angular2SwapiService, Film } from 'angular2-swapi';
 import { FilmItem } from '../../shared/interfaces/film-item';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
+import { FilmsService } from './films.service';
 
 @Component({
 	selector: 'app-films',
@@ -8,14 +11,14 @@ import { FilmItem } from '../../shared/interfaces/film-item';
 	styleUrls: ['./films.component.scss']
 })
 export class FilmsComponent implements OnInit {
-	films: FilmItem[] = [];
+	films$: Observable<FilmItem[]>;
 	counter = 0;
 	loading = false;
 
-	constructor(private swapiService: Angular2SwapiService) {}
+	constructor(private filmsService: FilmsService) {}
 
 	ngOnInit(): void {
-		this.getFilms();
+		this.films$ = this.filmsService.getFilmItems();
 	}
 
 	toggle(film: FilmItem): void {
@@ -23,35 +26,10 @@ export class FilmsComponent implements OnInit {
 		this.counter++;
 	}
 
-	getColor(isFavorite: boolean): string {
-		let color = '';
-		if (isFavorite) {
-			color = 'yellow';
-		}
-
-		this.counter++;
-		console.log(`${this.counter}: set yellow color on card`);
-		return color;
-	}
-
 	onMouseOver() {}
 
 	refresh() {
-		this.getFilms();
-	}
-
-	getFilms() {
-		this.loading = true;
-		this.swapiService.getFilms().subscribe((filmsResponse: Film[]) => {
-			this.films = [];
-			filmsResponse.forEach((film) => {
-				this.films.push({
-					...film,
-					isFavorite: false
-				});
-			});
-			this.loading = false;
-		});
+		this.films$ = this.filmsService.getFilmItems();
 	}
 
 	trackByFn(index, item: Film) {
