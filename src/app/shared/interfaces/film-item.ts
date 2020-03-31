@@ -1,5 +1,5 @@
 import { Film } from 'angular2-swapi';
 
-export interface SearchResultFilm extends Film {
+export interface FilmItem extends Film {
 	isFavorite: boolean;
 }

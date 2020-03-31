@@ -1,11 +1,12 @@
+
+<div fxLayout="row"  fxLayoutAlign="center center" (mouseover)="onMouseOver()">hover</div>
 <div fxLayout="row wrap"  fxLayoutAlign="center center">
-	<mat-card *ngFor="let film of films" fxFlex="20">
-		<h1>{{ film.title }} <span> {{getFavoriteText(film.isFavorite)}}</span></h1>
+	<mat-card *ngFor="let film of films" fxFlex="20" [ngStyle]="{'background-color': getColor(film.isFavorite)}">
+		<h1>{{ film.title }} </h1>
 		<h3>{{ film.release_date | date }}</h3>
 		<div fxLayoutAlign="end center">
 			<mat-icon aria-hidden="false" aria-label="Example home icon" (click)="toggle(film)" *ngIf="!film.isFavorite">favorite_border</mat-icon>
 			<mat-icon aria-hidden="false" aria-label="Example home icon" (click)="toggle(film)"  *ngIf="film.isFavorite">favorite</mat-icon>
 		</div>
 	</mat-card>
-	<mat-button-toggle (click)="ok()"></mat-button-toggle>
 </div>

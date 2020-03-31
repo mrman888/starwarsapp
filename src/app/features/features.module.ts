@@ -1,10 +1,10 @@
 import { SharedModule } from '@shared/shared.module';
 import { NgModule } from '@angular/core';
-import { SearchModule } from './search/search.module';
+import { Films } from './films/films.module';
 
 @NgModule({
 	declarations: [],
-	imports: [SearchModule, SharedModule],
-	exports: [SearchModule]
+	imports: [Films, SharedModule],
+	exports: [Films]
 })
 export class FeaturesModule {}
