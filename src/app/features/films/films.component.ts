@@ -10,6 +10,7 @@ import { FilmItem } from '../../shared/interfaces/film-item';
 export class FilmsComponent implements OnInit {
 	films: FilmItem[] = [];
 	counter = 0;
+	loading = false;
 
 	constructor(private swapiService: Angular2SwapiService) {}
 
@@ -40,6 +41,7 @@ export class FilmsComponent implements OnInit {
 	}
 
 	getFilms() {
+		this.loading = true;
 		this.swapiService.getFilms().subscribe((filmsResponse: Film[]) => {
 			this.films = [];
 			filmsResponse.forEach((film) => {
@@ -48,8 +50,11 @@ export class FilmsComponent implements OnInit {
 					isFavorite: false
 				});
 			});
+			this.loading = false;
 		});
 	}
 
-	trackBy
+	trackByFn(index, item: Film) {
+		return item.episode_id;
+	}
 }
