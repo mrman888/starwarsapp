@@ -1,35 +1,30 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef, AfterContentInit } from '@angular/core';
-import { Angular2SwapiService, Film } from 'angular2-swapi';
-import { FilmItem } from '../../shared/interfaces/film-item';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/operators';
 import { FilmsService } from './films.service';
+import { Film } from 'angular2-swapi';
+import { FilmItem, ImdbMovieItem } from './films.interface';
 
 @Component({
 	selector: 'app-films',
 	templateUrl: './films.component.html',
-	styleUrls: ['./films.component.scss']
+	styleUrls: ['./films.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilmsComponent implements OnInit {
 	films$: Observable<FilmItem[]>;
+	movies$: Observable<ImdbMovieItem[]>;
 	counter = 0;
-	loading = false;
 
 	constructor(private filmsService: FilmsService) {}
 
 	ngOnInit(): void {
-		this.films$ = this.filmsService.getFilmItems();
-	}
-
-	toggle(film: FilmItem): void {
-		film.isFavorite = !film.isFavorite;
-		this.counter++;
+		this.movies$ = this.filmsService.getMoviesItems();
 	}
 
 	onMouseOver() {}
 
 	refresh() {
-		this.films$ = this.filmsService.getFilmItems();
+		this.movies$ = this.filmsService.getMoviesItems();
 	}
 
 	trackByFn(index, item: Film) {

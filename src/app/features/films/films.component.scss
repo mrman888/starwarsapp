@@ -2,10 +2,6 @@ mat-card {
 	margin: 5px;
 }
 
-mat-icon {
-	cursor: pointer;
-}
-
 .hover-container {
 	&:hover {
 		background-color: aliceblue;
@@ -14,5 +10,9 @@ mat-icon {
 }
 
 button {
-	font-size:15px;
+	font-size: 15px;
+}
+
+img {
+	height: 500px;
 }

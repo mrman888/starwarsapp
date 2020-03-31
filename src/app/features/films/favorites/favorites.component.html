@@ -1,0 +1,4 @@
+<div fxLayoutAlign="end center">
+	<mat-icon aria-hidden="false" aria-label="icon" (click)="toggle(movie)" *ngIf="!movie.isFavorite">favorite_border</mat-icon>
+	<mat-icon aria-hidden="false" aria-label="icon" (click)="toggle(movie)"  *ngIf="movie.isFavorite">favorite</mat-icon>
+</div>
