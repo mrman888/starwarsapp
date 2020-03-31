@@ -5,3 +5,10 @@ mat-card {
 mat-icon {
 	cursor: pointer;
 }
+
+.hover-container {
+	&:hover {
+		background-color: aliceblue;
+		cursor: pointer;
+	}
+}

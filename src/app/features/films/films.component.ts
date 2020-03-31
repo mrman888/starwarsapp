@@ -7,21 +7,14 @@ import { FilmItem } from '../../shared/interfaces/film-item';
 	templateUrl: './films.component.html',
 	styleUrls: ['./films.component.scss']
 })
-export class FilmsComponent implements OnInit, AfterContentInit {
+export class FilmsComponent implements OnInit {
 	films: FilmItem[] = [];
 	counter = 0;
 
 	constructor(private swapiService: Angular2SwapiService) {}
 
 	ngOnInit(): void {
-		this.swapiService.getFilms().subscribe((filmsResponse: Film[]) => {
-			filmsResponse.forEach((film) => {
-				this.films.push({
-					...film,
-					isFavorite: false
-				});
-			});
-		});
+		this.getFilms();
 	}
 
 	toggle(film: FilmItem): void {
@@ -42,5 +35,19 @@ export class FilmsComponent implements OnInit, AfterContentInit {
 
 	onMouseOver() {}
 
-	ngAfterContentInit() {}
+	refresh() {
+		this.getFilms();
+	}
+
+	getFilms() {
+		this.swapiService.getFilms().subscribe((filmsResponse: Film[]) => {
+			this.films = [];
+			filmsResponse.forEach((film) => {
+				this.films.push({
+					...film,
+					isFavorite: false
+				});
+			});
+		});
+	}
 }

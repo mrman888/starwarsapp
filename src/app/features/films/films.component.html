@@ -1,5 +1,5 @@
 
-<div fxLayout="row"  fxLayoutAlign="center center" (mouseover)="onMouseOver()">hover</div>
+<div fxLayout="row"  fxLayoutAlign="center center" (mouseover)="onMouseOver()" class="hover-container" (click)="refresh()"><button mat-button>hover & refresh</button></div>
 <div fxLayout="row wrap"  fxLayoutAlign="center center">
 	<mat-card *ngFor="let film of films" fxFlex="20" [ngStyle]="{'background-color': getColor(film.isFavorite)}">
 		<h1>{{ film.title }} </h1>
