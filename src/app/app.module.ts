@@ -6,12 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
-import { Angular2SwapiModule } from 'angular2-swapi';
 
 @NgModule({
 	bootstrap: [AppComponent],
 	declarations: [AppComponent],
-	imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, Angular2SwapiModule, AppRoutingModule, CoreModule, FeaturesModule],
+	imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, AppRoutingModule, CoreModule, FeaturesModule],
 	providers: []
 })
 export class AppModule {}
