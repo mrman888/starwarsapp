@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
-import { FilmItem, ImdbMovieItem } from '../films.interface';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ImdbMovieItem } from '../films.interface';
 
 @Component({
 	selector: 'app-films-counter',
 	templateUrl: './films-counter.component.html',
 	styleUrls: ['./films-counter.component.scss'],
-	//changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilmsCounterComponent implements OnInit, OnChanges {
 	@Input()
