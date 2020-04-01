@@ -22,22 +22,19 @@ export class FilmsComponent implements OnInit {
 
 	getMovies() {
 		this.loading = true;
-		this.omniService.getMovies('star wars').subscribe(
-			((response: ImdbResponse) => {
-				this.movies = response.Search.map((movie: ImdbMovie) => {
-					return {
-						...movie,
-						isFavorite: false
-					} as ImdbMovieItem;
-				});
-				this.loading = false;
-			})
-		);
+		this.omniService.getMovies('star wars').subscribe((response: ImdbResponse) => {
+			this.movies = response.Search.map((movie: ImdbMovie) => {
+				return {
+					...movie,
+					isFavorite: false
+				} as ImdbMovieItem;
+			});
+			this.loading = false;
+		});
 	}
 
 	toggle(movie: ImdbMovieItem): void {
 		movie.isFavorite = !movie.isFavorite;
-		this.counter++;
 	}
 
 	getColor(isFavorite: boolean): string {
@@ -56,7 +53,6 @@ export class FilmsComponent implements OnInit {
 	refresh() {
 		this.getMovies();
 	}
-
 
 	trackByFn(index, item: ImdbMovieItem) {
 		return item.Title;
