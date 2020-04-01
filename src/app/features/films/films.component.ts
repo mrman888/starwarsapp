@@ -1,8 +1,6 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef, AfterContentInit } from '@angular/core';
-import { Angular2SwapiService, Film } from 'angular2-swapi';
-import { FilmItem } from '../../shared/interfaces/film-item';
+import { Component, OnInit } from '@angular/core';
+import { ImdbMovie, ImdbMovieItem, ImdbResponse } from './films.interface';
 import { OmniService } from './movies.service';
-import { ImdbResponse, ImdbMovie, ImdbMovieItem } from './films.interface';
 
 @Component({
 	selector: 'app-films',
