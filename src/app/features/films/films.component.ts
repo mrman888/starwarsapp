@@ -2,6 +2,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { FilmsService } from './films.service';
 import { ImdbMovieItem } from './films.interface';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { switchMap } from 'rxjs/internal/operators/switchMap';
+import { switchMapTo } from 'rxjs/internal/operators/switchMapTo';
 
 @Component({
 	selector: 'app-films',
@@ -12,6 +15,7 @@ import { ImdbMovieItem } from './films.interface';
 export class FilmsComponent implements OnInit {
 	movies$: Observable<ImdbMovieItem[]>;
 	counter = 0;
+	event$ = new BehaviorSubject(true);
 
 	constructor(private filmsService: FilmsService) {}
 
@@ -22,7 +26,8 @@ export class FilmsComponent implements OnInit {
 	onMouseOver() {}
 
 	refresh() {
-		this.movies$ = this.filmsService.getMoviesItems();
+		this.event$.next(true);
+
 	}
 
 	trackByFn(index, item: ImdbMovieItem) {
