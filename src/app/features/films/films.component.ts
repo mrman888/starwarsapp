@@ -1,8 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { FilmsService } from './films.service';
-import { Film } from 'angular2-swapi';
-import { FilmItem, ImdbMovieItem } from './films.interface';
+import { ImdbMovieItem } from './films.interface';
 
 @Component({
 	selector: 'app-films',
@@ -11,7 +10,6 @@ import { FilmItem, ImdbMovieItem } from './films.interface';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilmsComponent implements OnInit {
-	films$: Observable<FilmItem[]>;
 	movies$: Observable<ImdbMovieItem[]>;
 	counter = 0;
 
@@ -27,7 +25,7 @@ export class FilmsComponent implements OnInit {
 		this.movies$ = this.filmsService.getMoviesItems();
 	}
 
-	trackByFn(index, item: Film) {
-		return item.episode_id;
+	trackByFn(index, item: ImdbMovieItem) {
+		return item.Title;
 	}
 }

@@ -4,12 +4,12 @@
 	<ng-template #loading><mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar></ng-template>
 </div>
 
-<ng-container  *ngIf=" movies$ | async as movies">
+
 	<div fxLayout="row wrap"  fxLayoutAlign="center center">
-		<app-films-counter [movies]="movies"></app-films-counter>
+		<app-films-counter [movies]="movies$ | async"></app-films-counter>
 	</div>
 	<div fxLayout="row wrap"  fxLayoutAlign="center center">
-		<mat-card *ngFor="let movie of movies; trackBy: trackByFn" fxFlex="20" [ngStyle]="{'background-color': movie.isFavorite | color}">
+		<mat-card *ngFor="let movie of movies$ | async; trackBy: trackByFn" fxFlex="20" [ngStyle]="{'background-color': movie.isFavorite | color}">
 			<mat-card-header>
 			<div mat-card-avatar class="example-header-image"></div>
 			<mat-card-title>{{ movie.Title }} </mat-card-title>
@@ -23,4 +23,3 @@
 			</mat-card-actions>
 		</mat-card>
 	</div>
-</ng-container>
