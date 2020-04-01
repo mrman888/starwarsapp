@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Angular2SwapiService, Film } from 'angular2-swapi';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/operators';
+import { map, distinctUntilChanged } from 'rxjs/operators';
 import { FilmItem, ImdbResponse, ImdbMovie, ImdbMovieItem } from './films.interface';
 import { OmniService } from './movies.service';
 
@@ -24,6 +24,7 @@ export class FilmsService {
 
 	getMoviesItems(): Observable<ImdbMovieItem[]> {
 		return this.omniService.getMovies('star wars').pipe(
+			distinctUntilChanged(),
 			map((response: ImdbResponse) =>
 				response.Search.map((movie: ImdbMovie) => {
 					return {

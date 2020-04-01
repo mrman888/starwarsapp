@@ -5,7 +5,7 @@ import { FilmItem, ImdbMovieItem } from '../films.interface';
 	selector: 'app-films-counter',
 	templateUrl: './films-counter.component.html',
 	styleUrls: ['./films-counter.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	//changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FilmsCounterComponent implements OnInit, OnChanges {
 	@Input()
@@ -17,5 +17,9 @@ export class FilmsCounterComponent implements OnInit, OnChanges {
 
 	ngOnChanges(changes: SimpleChanges) {
 		const movies = changes['movies'];
+	}
+
+	log() {
+		console.log('films counter is called');
 	}
 }

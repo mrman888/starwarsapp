@@ -2,23 +2,25 @@
 <div fxLayout="column"  fxLayoutAlign="center center" (mouseover)="onMouseOver()" class="hover-container" (click)="refresh()">
 	<button mat-button color="primary">hover & refresh</button>
 	<ng-template #loading><mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar></ng-template>
-
 </div>
 
-<div fxLayout="row wrap"  fxLayoutAlign="center center" >
-	<mat-card *ngFor="let movie of movies$ | async as movies; trackBy: trackByFn" fxFlex="20" [ngStyle]="{'background-color': movie.isFavorite | color}">
-		<mat-card-header>
-		  <div mat-card-avatar class="example-header-image"></div>
-		  <mat-card-title>{{ movie.Title }} </mat-card-title>
-		  <mat-card-subtitle>{{ movie.Year | date }}</mat-card-subtitle>
-		</mat-card-header>
-		<img mat-card-image [src]="movie.Poster" alt="Photo of a Shiba Inu">
-		<mat-card-content>
-		</mat-card-content>
-		<mat-card-actions>
-		  <!-- <button mat-button>LIKE</button>
-		  <button mat-button>SHARE</button> -->
-		  <app-favorites [movie]="movie"></app-favorites>
-		</mat-card-actions>
-	  </mat-card>
-</div>
+<ng-container  *ngIf=" movies$ | async as movies">
+	<div fxLayout="row wrap"  fxLayoutAlign="center center">
+		<app-films-counter [movies]="movies"></app-films-counter>
+	</div>
+	<div fxLayout="row wrap"  fxLayoutAlign="center center">
+		<mat-card *ngFor="let movie of movies; trackBy: trackByFn" fxFlex="20" [ngStyle]="{'background-color': movie.isFavorite | color}">
+			<mat-card-header>
+			<div mat-card-avatar class="example-header-image"></div>
+			<mat-card-title>{{ movie.Title }} </mat-card-title>
+			<mat-card-subtitle>{{ movie.Year | date }}</mat-card-subtitle>
+			</mat-card-header>
+			<img mat-card-image [src]="movie.Poster" alt="Photo of a Shiba Inu">
+			<mat-card-content>
+			</mat-card-content>
+			<mat-card-actions>
+			<app-favorites [movie]="movie"></app-favorites>
+			</mat-card-actions>
+		</mat-card>
+	</div>
+</ng-container>
