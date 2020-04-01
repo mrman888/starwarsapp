@@ -3,13 +3,23 @@
 	<button mat-button>hover & refresh</button>
 	<mat-progress-bar [mode]="'indeterminate'" *ngIf="loading"></mat-progress-bar>
 </div>
+
 <div fxLayout="row wrap"  fxLayoutAlign="center center">
-	<mat-card *ngFor="let film of films" fxFlex="20" [ngStyle]="{'background-color': getColor(film.isFavorite)}">
-		<h1>{{ film.title }} </h1>
-		<h3>{{ film.release_date | date }}</h3>
-		<div fxLayoutAlign="end center">
-			<mat-icon aria-hidden="false" aria-label="Example home icon" (click)="toggle(film)" *ngIf="!film.isFavorite">favorite_border</mat-icon>
-			<mat-icon aria-hidden="false" aria-label="Example home icon" (click)="toggle(film)"  *ngIf="film.isFavorite">favorite</mat-icon>
-		</div>
+	<!-- <mat-card *ngFor="let movie of movies; trackBy: trackByFn" fxFlex="20" [ngStyle]="{'background-color': getColor(movie.isFavorite)}"></mat-card> -->
+	<mat-card *ngFor="let movie of movies" fxFlex="20" [ngStyle]="{'background-color': getColor(movie.isFavorite)}">
+		<mat-card-header>
+		<div mat-card-avatar class="example-header-image"></div>
+		<mat-card-title>{{ movie.Title }} </mat-card-title>
+		<mat-card-subtitle>{{ movie.Year | date }}</mat-card-subtitle>
+		</mat-card-header>
+		<img mat-card-image [src]="movie.Poster" alt="Photo of a Shiba Inu">
+		<mat-card-content>
+		</mat-card-content>
+		<mat-card-actions>
+			<div fxLayoutAlign="end center">
+				<mat-icon aria-hidden="false" aria-label="Example home icon" (click)="toggle(movie)" *ngIf="!movie.isFavorite">favorite_border</mat-icon>
+				<mat-icon aria-hidden="false" aria-label="Example home icon" (click)="toggle(movie)"  *ngIf="movie.isFavorite">favorite</mat-icon>
+			</div>
+		</mat-card-actions>
 	</mat-card>
 </div>

@@ -1,10 +1,13 @@
-import { SharedModule } from '@shared/shared.module';
 import { NgModule } from '@angular/core';
-import { Films } from './films/films.module';
+import { SharedModule } from '@shared/shared.module';
+import { FilmsModule } from './films/films.module';
+import { OmniService } from './films/movies.service';
+
 
 @NgModule({
 	declarations: [],
-	imports: [Films, SharedModule],
-	exports: [Films]
+	imports: [FilmsModule, SharedModule],
+	exports: [FilmsModule],
+	providers: [OmniService]
 })
 export class FeaturesModule {}

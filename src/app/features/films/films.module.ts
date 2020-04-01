@@ -7,4 +7,4 @@ import { FilmsComponent } from './films.component';
 	declarations: [FilmsComponent],
 	imports: [SharedModule, FilmsRoutingModule]
 })
-export class Films {}
+export class FilmsModule {}

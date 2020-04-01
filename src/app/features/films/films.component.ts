@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectorRef, AfterContentInit } from '@angular/core';
 import { Angular2SwapiService, Film } from 'angular2-swapi';
 import { FilmItem } from '../../shared/interfaces/film-item';
+import { OmniService } from './movies.service';
+import { ImdbResponse, ImdbMovie, ImdbMovieItem } from './films.interface';
 
 @Component({
 	selector: 'app-films',
@@ -8,18 +10,33 @@ import { FilmItem } from '../../shared/interfaces/film-item';
 	styleUrls: ['./films.component.scss']
 })
 export class FilmsComponent implements OnInit {
-	films: FilmItem[] = [];
+	movies: ImdbMovieItem[] = [];
 	counter = 0;
 	loading = false;
 
-	constructor(private swapiService: Angular2SwapiService) {}
+	constructor(private omniService: OmniService) {}
 
 	ngOnInit(): void {
-		this.getFilms();
+		this.getMovies();
 	}
 
-	toggle(film: FilmItem): void {
-		film.isFavorite = !film.isFavorite;
+	getMovies() {
+		this.loading = true;
+		this.omniService.getMovies('star wars').subscribe(
+			((response: ImdbResponse) => {
+				this.movies = response.Search.map((movie: ImdbMovie) => {
+					return {
+						...movie,
+						isFavorite: false
+					} as ImdbMovieItem;
+				});
+				this.loading = false;
+			})
+		);
+	}
+
+	toggle(movie: ImdbMovieItem): void {
+		movie.isFavorite = !movie.isFavorite;
 		this.counter++;
 	}
 
@@ -37,24 +54,11 @@ export class FilmsComponent implements OnInit {
 	onMouseOver() {}
 
 	refresh() {
-		this.getFilms();
+		this.getMovies();
 	}
 
-	getFilms() {
-		this.loading = true;
-		this.swapiService.getFilms().subscribe((filmsResponse: Film[]) => {
-			this.films = [];
-			filmsResponse.forEach((film) => {
-				this.films.push({
-					...film,
-					isFavorite: false
-				});
-			});
-			this.loading = false;
-		});
-	}
 
-	trackByFn(index, item: Film) {
-		return item.episode_id;
+	trackByFn(index, item: ImdbMovieItem) {
+		return item.Title;
 	}
 }
