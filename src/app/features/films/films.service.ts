@@ -10,7 +10,6 @@ export class FilmsService {
 
 	getMoviesItems(): Observable<ImdbMovieItem[]> {
 		return this.omniService.getMovies('star wars').pipe(
-			distinctUntilChanged(),
 			map((response: ImdbResponse) =>
 				response.Search.map((movie: ImdbMovie) => {
 					return {
