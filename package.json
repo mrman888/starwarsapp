@@ -27,6 +27,7 @@
     "angular2-swapi": "0.0.2",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.5.4",
+    "subsink": "^1.0.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

@@ -1,18 +1,18 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef, AfterContentInit } from '@angular/core';
-import { Angular2SwapiService, Film } from 'angular2-swapi';
-import { FilmItem } from '../../shared/interfaces/film-item';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ImdbMovie, ImdbMovieItem, ImdbResponse } from './films.interface';
 import { OmniService } from './movies.service';
-import { ImdbResponse, ImdbMovie, ImdbMovieItem } from './films.interface';
+import { SubSink } from 'subsink';
 
 @Component({
 	selector: 'app-films',
 	templateUrl: './films.component.html',
 	styleUrls: ['./films.component.scss']
 })
-export class FilmsComponent implements OnInit {
+export class FilmsComponent implements OnInit, OnDestroy {
 	movies: ImdbMovieItem[] = [];
 	counter = 0;
 	loading = false;
+	private subs = new SubSink();
 
 	constructor(private omniService: OmniService) {}
 
@@ -22,17 +22,15 @@ export class FilmsComponent implements OnInit {
 
 	getMovies() {
 		this.loading = true;
-		this.omniService.getMovies('star wars').subscribe(
-			((response: ImdbResponse) => {
-				this.movies = response.Search.map((movie: ImdbMovie) => {
-					return {
-						...movie,
-						isFavorite: false
-					} as ImdbMovieItem;
-				});
-				this.loading = false;
-			})
-		);
+		this.subs.sink = this.omniService.getMovies('star wars').subscribe((response: ImdbResponse) => {
+			this.movies = response.Search.map((movie: ImdbMovie) => {
+				return {
+					...movie,
+					isFavorite: false
+				} as ImdbMovieItem;
+			});
+			this.loading = false;
+		});
 	}
 
 	toggle(movie: ImdbMovieItem): void {
@@ -57,8 +55,11 @@ export class FilmsComponent implements OnInit {
 		this.getMovies();
 	}
 
-
 	trackByFn(index, item: ImdbMovieItem) {
 		return item.Title;
+	}
+
+	ngOnDestroy() {
+		this.subs.unsubscribe();
 	}
 }
