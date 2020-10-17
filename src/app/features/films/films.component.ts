@@ -17,14 +17,13 @@ export class FilmsComponent implements OnInit {
 	counter = 0;
 	event$ = new BehaviorSubject(true);
 	searchText = 'star wars';
+	useStaticSearch = true;
 
 	constructor(private filmsService: FilmsService) {}
 
 	ngOnInit(): void {
 		//this.movies$ = this.filmsService.searchMoviesItems(this.searchText);
-		this.filmsService.searchMoviesItems(this.searchText).subscribe((movies) => {
-			this.movies = movies;
-		});
+		this.search(this.searchText, this.useStaticSearch);
 	}
 
 	onMouseOver() {}
@@ -39,8 +38,17 @@ export class FilmsComponent implements OnInit {
 
 	onSearch(searchText: string) {
 		this.searchText = searchText;
-		this.filmsService.searchMoviesItems(this.searchText).subscribe((movies) => {
-			this.movies = movies;
-		});
+		this.search(this.searchText, this.useStaticSearch);
+	}
+
+	search(searchText: string, staticList: boolean = false) {
+		if (!staticList) {
+			this.filmsService.searchMovieItems(searchText).subscribe((movies) => {
+				this.movies = movies;
+			});
+		} else {
+			this.movies = this.filmsService.searchStaticMovieItems(searchText);
+			debugger;
+		}
 	}
 }

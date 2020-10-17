@@ -14,17 +14,19 @@
 	<app-films-counter [movies]="movies"></app-films-counter>
 </div>
 <div fxLayout="row wrap"  fxLayoutAlign="center center">
-	<mat-card *ngFor="let movie of movies; trackBy: trackByFn" fxFlex="20" [ngStyle]="{'background-color': movie.isFavorite | color}">
-		<mat-card-header>
-		<div mat-card-avatar class="example-header-image"></div>
-		<mat-card-title>{{ movie.Title }} </mat-card-title>
-		<mat-card-subtitle>{{ movie.Year | date }}</mat-card-subtitle>
-		</mat-card-header>
-		<img mat-card-image [src]="movie.Poster" alt="Photo of a Shiba Inu">
-		<mat-card-content>
-		</mat-card-content>
-		<mat-card-actions>
-		<app-favorites [movie]="movie"></app-favorites>
-		</mat-card-actions>
-	</mat-card>
+	<div fxFlex="350px" *ngFor="let movie of movies; trackBy: trackByFn">
+		<mat-card  [ngStyle]="{'background-color': movie.isFavorite | color}">
+			<mat-card-header>
+			<div mat-card-avatar class="example-header-image"></div>
+			<mat-card-title>{{ movie.Title }} </mat-card-title>
+			<mat-card-subtitle>{{ movie.Year | date }}</mat-card-subtitle>
+			</mat-card-header>
+			<img mat-card-image [src]="movie.Poster" alt="Photo of a Shiba Inu">
+			<mat-card-content>
+			</mat-card-content>
+			<mat-card-actions>
+			<app-favorites [movie]="movie"></app-favorites>
+			</mat-card-actions>
+		</mat-card>
+	</div>
 </div>
