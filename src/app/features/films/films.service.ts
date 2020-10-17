@@ -8,8 +8,8 @@ import { OmniService } from './movies.service';
 export class FilmsService {
 	constructor(private omniService: OmniService) {}
 
-	getMoviesItems(): Observable<ImdbMovieItem[]> {
-		return this.omniService.getMovies('star wars').pipe(
+	searchMoviesItems(searchText: string): Observable<ImdbMovieItem[]> {
+		return this.omniService.getMovies(searchText).pipe(
 			map((response: ImdbResponse) =>
 				response.Search.map((movie: ImdbMovie) => {
 					return {

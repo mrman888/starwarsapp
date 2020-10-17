@@ -1,0 +1,14 @@
+	<div fxLayout="row">
+		<div fxFlex="70">
+			<mat-form-field class="example-form-field">
+				<mat-label>Fill in your search criteria</mat-label>
+				<input #searchInput matInput type="text"  (keyup)="searchTextChanged($event.target.value)" (keydown.enter)="onSearch()" [value]="searchText">
+				<button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+				<mat-icon>close</mat-icon>
+				</button>
+		</mat-form-field>
+		</div>
+		<div fxFlex="30">
+			<button mat-button  type="submit" (click)="onSearch()" >Search</button>
+		</div>
+	</div>
