@@ -103,7 +103,6 @@ export class FilmsService {
 	searchStaticMovieItems(searchText: string): ImdbMovieItem[] {
 		return this.movies.filter((x) => {
 			let found = false;
-			debugger;
 			if (x.Title.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase()) > -1) {
 				found = true;
 			}
