@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { map, distinctUntilChanged } from 'rxjs/operators';
 import { ImdbResponse, ImdbMovie, ImdbMovieItem } from './films.interface';
-import { OmniService } from './movies.service';
+import { OmniService } from './omni.service';
 
 @Injectable()
 export class FilmsService {
