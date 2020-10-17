@@ -21,10 +21,8 @@ export class FilmsComponent implements OnInit {
 	constructor(private filmsService: FilmsService) {}
 
 	ngOnInit(): void {
-		debugger;
 		//this.movies$ = this.filmsService.searchMoviesItems(this.searchText);
 		this.filmsService.searchMoviesItems(this.searchText).subscribe((movies) => {
-			debugger;
 			this.movies = movies;
 		});
 	}
@@ -40,7 +38,6 @@ export class FilmsComponent implements OnInit {
 	}
 
 	onSearch(searchText: string) {
-		debugger;
 		this.searchText = searchText;
 		this.filmsService.searchMoviesItems(this.searchText).subscribe((movies) => {
 			this.movies = movies;
