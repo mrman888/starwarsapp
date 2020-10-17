@@ -1,0 +1,18 @@
+mat-card {
+	margin: 5px;
+}
+
+.hover-container {
+	&:hover {
+		background-color: aliceblue;
+		cursor: pointer;
+	}
+}
+
+button {
+	font-size: 15px;
+}
+
+img {
+	height: 500px;
+}
