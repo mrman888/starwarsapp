@@ -48,7 +48,6 @@ export class FilmsComponent implements OnInit {
 			});
 		} else {
 			this.movies = this.filmsService.searchStaticMovieItems(searchText);
-			debugger;
 		}
 	}
 }

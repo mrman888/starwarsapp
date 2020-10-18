@@ -7,11 +7,21 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FeaturesModule } from './features/features.module';
 import { Angular2SwapiModule } from 'angular2-swapi';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
 	bootstrap: [AppComponent],
 	declarations: [AppComponent],
-	imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, Angular2SwapiModule, AppRoutingModule, CoreModule, FeaturesModule],
-	providers: []
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		HttpClientModule,
+		Angular2SwapiModule,
+		AppRoutingModule,
+		CoreModule,
+		FeaturesModule,
+		SharedModule,
+	],
+	providers: [],
 })
 export class AppModule {}
