@@ -36,7 +36,24 @@
 a {
 	&:visited,
 	&:link {
-		color: black;
+		color: white;
 		text-decoration: none;
+	}
+	display: block;
+	margin-left: 20px;
+	font-size: large;
+
+	//selected menu item
+	&.router-link-active {
+		text-decoration: underline;
+
+		&:hover {
+			color: #44697d;
+			background-color: #b9c9d0;
+		}
+
+		&:link {
+			text-decoration: underline;
+		}
 	}
 }
